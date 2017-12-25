@@ -21,10 +21,6 @@ const start = () =>  {
 drakeIMG.src = "app/assets/main-image.jpg";
 drakeIMG.onload = start;
   
-reader.onload = event => {
-  albumIMG.src = reader.result;
-};
-
 btnGenerate.addEventListener('click', () => {
   reader.readAsDataURL(btnAlbum.files[0]);    
   start();
@@ -32,10 +28,13 @@ btnGenerate.addEventListener('click', () => {
 });
 
 const rotateAndPlaceImage = (image, angle) => {
-  ctx.translate(ALBUM_POSITION_GLOBAL_X, ALBUM_POSITION_GLOBAL_Y);
-  ctx.rotate(angle * Math.PI / 180);
-  ctx.drawImage(image, ALBUM_POSITION_X, ALBUM_POSITION_Y, ALBUM_SIZINGS, ALBUM_SIZINGS);
-  ctx.restore();
+  reader.onload = event => {
+    albumIMG.src = reader.result;
+    ctx.translate(ALBUM_POSITION_GLOBAL_X, ALBUM_POSITION_GLOBAL_Y);
+    ctx.rotate(angle * Math.PI / 180);
+    ctx.drawImage(image, ALBUM_POSITION_X, ALBUM_POSITION_Y, ALBUM_SIZINGS, ALBUM_SIZINGS);
+    ctx.restore();
+  };
 };
 
 
