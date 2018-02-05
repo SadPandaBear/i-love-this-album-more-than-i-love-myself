@@ -21,12 +21,6 @@ const start = () =>  {
 drakeIMG.src = "app/assets/main-image.jpg";
 drakeIMG.onload = start;
   
-btnGenerate.addEventListener('click', () => {
-  reader.readAsDataURL(btnAlbum.files[0]);    
-  start();
-  rotateAndPlaceImage(albumIMG, ALBUM_ANGLE_DEGREES);
-});
-
 const rotateAndPlaceImage = (image, angle) => {
   reader.onload = event => {
     albumIMG.src = reader.result;
@@ -36,3 +30,9 @@ const rotateAndPlaceImage = (image, angle) => {
     ctx.restore();
   };
 };
+
+btnGenerate.addEventListener('click', () => {
+  reader.readAsDataURL(btnAlbum.files[0]);    
+  start();
+  rotateAndPlaceImage(albumIMG, ALBUM_ANGLE_DEGREES);
+});
