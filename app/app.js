@@ -36,6 +36,3 @@ const rotateAndPlaceImage = (image, angle) => {
     ctx.restore();
   };
 };
-
-
-
