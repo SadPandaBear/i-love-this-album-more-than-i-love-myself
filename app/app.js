@@ -28,7 +28,7 @@
 
   const readFile = file => new Promise(resolve => {
     const reader = new FileReader();
-    
+
     reader.addEventListener('load', () => {
       resolve(reader.result);
     });
@@ -38,10 +38,12 @@
 
   const drawAlbum = img => {
     const albumIMG = new Image();
+    albumIMG.addEventListener('load', () => {
+      ctx.translate(ALBUM_POSITION_GLOBAL_X, ALBUM_POSITION_GLOBAL_Y);
+      ctx.rotate(ALBUM_ANGLE_DEGREES * Math.PI / 180);
+      ctx.drawImage(albumIMG, ALBUM_POSITION_X, ALBUM_POSITION_Y, ALBUM_SIZINGS, ALBUM_SIZINGS);
+      ctx.restore();
+    });
     albumIMG.src = img;
-    ctx.translate(ALBUM_POSITION_GLOBAL_X, ALBUM_POSITION_GLOBAL_Y);
-    ctx.rotate(ALBUM_ANGLE_DEGREES * Math.PI / 180);
-    ctx.drawImage(albumIMG, ALBUM_POSITION_X, ALBUM_POSITION_Y, ALBUM_SIZINGS, ALBUM_SIZINGS);
-    ctx.restore();
   };
 })();
